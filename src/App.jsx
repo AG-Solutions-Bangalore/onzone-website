@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 import UtilityBar from "./components/UtilityBar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import MobilePopup from "./components/MobilePopup";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -44,6 +45,7 @@ const App = () => {
           </Routes>
         </main>
         <Footer />
+        <MobilePopup />
       </div>
     </BrowserRouter>
   );
