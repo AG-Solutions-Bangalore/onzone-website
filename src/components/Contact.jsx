@@ -1,8 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    enquiryFullName: "",
+    enquiryMobile: "",
+    enquiryEmail: "",
+    enquiryBusiness: "",
+    enquiryCity: "",
+    enquiryType: "General Enquiry",
+    enquiryMessage: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: null, message: "" });
+  const [errors, setErrors] = useState({});
+
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -10,6 +30,121 @@ const Contact = () => {
       offset: 50,
     });
   }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const finalValue = name === "enquiryMobile" ? value.replace(/\D/g, "").slice(0, 10) : value;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: finalValue,
+    }));
+
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    const nameTrimmed = formData.enquiryFullName.trim();
+    if (!nameTrimmed) {
+      newErrors.enquiryFullName = "Full name is required";
+    } else if (nameTrimmed.length < 2) {
+      newErrors.enquiryFullName = "Name must be at least 2 characters";
+    }
+
+    const mobileTrimmed = formData.enquiryMobile.trim();
+    if (!mobileTrimmed) {
+      newErrors.enquiryMobile = "Mobile number is required";
+    } else if (!/^\d{10}$/.test(mobileTrimmed)) {
+      newErrors.enquiryMobile = "Please enter a valid 10-digit mobile number";
+    }
+
+    const emailTrimmed = formData.enquiryEmail.trim();
+    if (!emailTrimmed) {
+      newErrors.enquiryEmail = "Email address is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) {
+      newErrors.enquiryEmail = "Please enter a valid email address";
+    }
+
+    return newErrors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ type: null, message: "" });
+
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      setStatus({
+        type: "error",
+        message: "Please fix the errors below before submitting.",
+      });
+      return;
+    }
+
+    setErrors({});
+    setLoading(true);
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const payload = {
+      ...formData,
+      utm_medium: searchParams.get("utm_medium") || "",
+      utm_source: searchParams.get("utm_source") || "",
+      utm_campaign: searchParams.get("utm_campaign") || "",
+    };
+
+    try {
+      const response = await fetch(
+        "https://houseofonzone.com/admin/public/api/createEnquiry",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok || data.status === true || data.status === "success") {
+        setStatus({
+          type: "success",
+          message:
+            data.message ||
+            "Thank you! Your enquiry has been submitted successfully.",
+        });
+        setFormData({
+          enquiryFullName: "",
+          enquiryMobile: "",
+          enquiryEmail: "",
+          enquiryBusiness: "",
+          enquiryCity: "",
+          enquiryType: "General Enquiry",
+          enquiryMessage: "",
+        });
+      } else {
+        setStatus({
+          type: "error",
+          message:
+            data.message ||
+            "Something went wrong while sending your enquiry. Please try again.",
+        });
+      }
+    } catch (err) {
+      console.error("Enquiry API error:", err);
+      setStatus({
+        type: "error",
+        message: "Unable to connect to server. Please try again later.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="bg-[#0E1A30] py-16 md:py-20" id="contact">
@@ -96,55 +231,163 @@ const Contact = () => {
           </div>
 
           {/* Right: form */}
-          <div
+          <form
             id="contact-form"
+            onSubmit={handleSubmit}
+            noValidate
             className="bg-[#E8E1D5] p-6 md:p-10 rounded-xl"
           >
+            {status.message && (
+              <div
+                className={`mb-5 p-3 rounded text-xs font-medium ${
+                  status.type === "success"
+                    ? "bg-green-100 text-green-800"
+                    : "bg-red-100 text-red-800"
+                }`}
+              >
+                {status.message}
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-              {["Your Name", "Business Name, Store Type"].map((ph) => (
-                <div key={ph}>
-                  <label className="block font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.12em] uppercase text-[#6B665A] mb-1.5">
-                    {ph}
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full bg-[#FDFAF5] border-none border-b border-[rgba(14,26,48,0.12)] py-2.5 font-sans text-[0.9rem] outline-none focus:border-b-2 focus:border-[#A87B31] transition-all"
-                  />
-                </div>
-              ))}
+              <div>
+                <label className="block font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.12em] uppercase text-[#6B665A] mb-1.5">
+                  Your Name *
+                </label>
+                <input
+                  type="text"
+                  name="enquiryFullName"
+                  value={formData.enquiryFullName}
+                  onChange={handleChange}
+                  className={`w-full bg-[#FDFAF5] border-none border-b ${
+                    errors.enquiryFullName ? "border-red-500 border-b-2" : "border-[rgba(14,26,48,0.12)]"
+                  } py-2.5 font-sans text-[0.9rem] outline-none focus:border-b-2 focus:border-[#A87B31] transition-all`}
+                />
+                {errors.enquiryFullName && (
+                  <p className="text-red-500 text-[0.7rem] mt-1 font-sans">{errors.enquiryFullName}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.12em] uppercase text-[#6B665A] mb-1.5">
+                  Business Name, Store Type
+                </label>
+                <input
+                  type="text"
+                  name="enquiryBusiness"
+                  value={formData.enquiryBusiness}
+                  onChange={handleChange}
+                  className="w-full bg-[#FDFAF5] border-none border-b border-[rgba(14,26,48,0.12)] py-2.5 font-sans text-[0.9rem] outline-none focus:border-b-2 focus:border-[#A87B31] transition-all"
+                />
+              </div>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-              {["City", "Phone"].map((ph) => (
-                <div key={ph}>
-                  <label className="block font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.12em] uppercase text-[#6B665A] mb-1.5">
-                    {ph}
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full bg-[#FDFAF5] border-none border-b border-[rgba(14,26,48,0.12)] py-2.5 font-sans text-[0.9rem] outline-none focus:border-b-2 focus:border-[#A87B31] transition-all"
-                  />
-                </div>
-              ))}
+              <div>
+                <label className="block font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.12em] uppercase text-[#6B665A] mb-1.5">
+                  City
+                </label>
+                <input
+                  type="text"
+                  name="enquiryCity"
+                  value={formData.enquiryCity}
+                  onChange={handleChange}
+                  className="w-full bg-[#FDFAF5] border-none border-b border-[rgba(14,26,48,0.12)] py-2.5 font-sans text-[0.9rem] outline-none focus:border-b-2 focus:border-[#A87B31] transition-all"
+                />
+              </div>
+
+              <div>
+                <label className="block font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.12em] uppercase text-[#6B665A] mb-1.5">
+                  Phone *
+                </label>
+                <input
+                  type="tel"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  maxLength={10}
+                  name="enquiryMobile"
+                  value={formData.enquiryMobile}
+                  onChange={handleChange}
+                  placeholder="10-digit mobile number"
+                  className={`w-full bg-[#FDFAF5] border-none border-b ${
+                    errors.enquiryMobile ? "border-red-500 border-b-2" : "border-[rgba(14,26,48,0.12)]"
+                  } py-2.5 font-sans text-[0.9rem] outline-none focus:border-b-2 focus:border-[#A87B31] transition-all`}
+                />
+                {errors.enquiryMobile && (
+                  <p className="text-red-500 text-[0.7rem] mt-1 font-sans">{errors.enquiryMobile}</p>
+                )}
+              </div>
             </div>
+
             <div className="mb-5">
               <label className="block font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.12em] uppercase text-[#6B665A] mb-1.5">
-                Email
+                Email *
               </label>
               <input
                 type="email"
-                className="w-full bg-[#FDFAF5] border-none border-b border-[rgba(14,26,48,0.12)] py-2.5 font-sans text-[0.9rem] outline-none focus:border-b-2 focus:border-[#A87B31] transition-all"
+                name="enquiryEmail"
+                value={formData.enquiryEmail}
+                onChange={handleChange}
+                className={`w-full bg-[#FDFAF5] border-none border-b ${
+                  errors.enquiryEmail ? "border-red-500 border-b-2" : "border-[rgba(14,26,48,0.12)]"
+                } py-2.5 font-sans text-[0.9rem] outline-none focus:border-b-2 focus:border-[#A87B31] transition-all`}
               />
+              {errors.enquiryEmail && (
+                <p className="text-red-500 text-[0.7rem] mt-1 font-sans">{errors.enquiryEmail}</p>
+              )}
             </div>
+
+            {/* Reusable Shadcn UI Select for Type of Enquiry */}
+            <div className="mb-5">
+              <label className="block font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.12em] uppercase text-[#6B665A] mb-1.5">
+                Type of Enquiry
+              </label>
+              <Select
+                value={formData.enquiryType}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, enquiryType: value }))
+                }
+              >
+                <SelectTrigger className="h-10 text-[0.9rem] py-2">
+                  <SelectValue placeholder="Select one…" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Become a Retail Partner">
+                    Become a Retail Partner
+                  </SelectItem>
+                  <SelectItem value="Request Product Catalogue">
+                    Request Product Catalogue
+                  </SelectItem>
+                  <SelectItem value="Bulk / Wholesale Order">
+                    Bulk / Wholesale Order
+                  </SelectItem>
+                  <SelectItem value="General Enquiry">
+                    General Enquiry
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
             <div className="mb-6">
               <label className="block font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.12em] uppercase text-[#6B665A] mb-1.5">
                 Message
               </label>
-              <textarea className="w-full bg-[#FDFAF5] border-none border-b border-[rgba(14,26,48,0.12)] py-2.5 font-sans text-[0.9rem] outline-none resize-none h-20 focus:border-b-2 focus:border-[#A87B31] transition-all" />
+              <textarea
+                name="enquiryMessage"
+                value={formData.enquiryMessage}
+                onChange={handleChange}
+                className="w-full bg-[#FDFAF5] border-none border-b border-[rgba(14,26,48,0.12)] py-2.5 font-sans text-[0.9rem] outline-none resize-none h-20 focus:border-b-2 focus:border-[#A87B31] transition-all"
+              />
             </div>
-            <button className="font-mono text-[0.68rem] tracking-[0.08em] uppercase bg-[#0E1A30] text-[#FDFAF5] py-3.5 px-7 border-none cursor-pointer rounded-[1px] w-full sm:w-auto hover:bg-[#A87B31] transition-colors">
-              Request Catalogue
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="font-mono text-[0.68rem] tracking-[0.08em] uppercase bg-[#0E1A30] text-[#FDFAF5] py-3.5 px-7 border-none cursor-pointer rounded-[1px] w-full sm:w-auto hover:bg-[#A87B31] transition-colors disabled:opacity-50"
+            >
+              {loading ? "Sending..." : "Request Catalogue"}
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>
