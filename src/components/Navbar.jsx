@@ -31,10 +31,10 @@ const Navbar = () => {
           {/* Updated min-width to prevent forcing too much space on small screens */}
           <div className="flex items-center min-w-[100px] sm:min-w-[140px] md:min-w-[180px]">
             <img
-              src="/images/with_backdrop.png"
+              src="/hoo_logo.svg"
               alt="Onzone – House of Onzone"
               /* Responsive heights: h-8 for tiny phones -> lg:h-16 for desktops */
-              className="h-8 sm:h-10 md:h-14 lg:h-16 w-auto object-contain"
+              className="h-5 sm:h-6 md:h-7 lg:h-9 xl:h-10 w-auto object-contain"
             />
           </div>
         </Link>

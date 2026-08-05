@@ -2,54 +2,55 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { img } from "../lib/utils.js";
 
 const allCards = [
   {
     title: "Formals",
     desc: "Boardroom to Evening",
-    img: "/images/img_6.jpeg",
+    img: img("img_6.jpeg"),
     cat: "Formal",
   },
   {
     title: "Smart Casuals",
     desc: "Effortless Presence",
-    img: "/images/img_7.jpeg",
+    img: img("img_7.jpeg"),
     cat: "Casual",
   },
   {
     title: "Trousers",
     desc: "Perfectly Tailored",
-    img: "/images/img_8.jpeg",
+    img: img("img_8.jpeg"),
     cat: "Bottoms",
   },
   {
     title: "Denims",
     desc: "Everyday Essential",
-    img: "/images/img_9.jpeg",
+    img: img("img_9.jpeg"),
     cat: "Bottoms",
   },
   {
     title: "Cargos",
     desc: "Utility meets Style",
-    img: "/images/img_10.jpeg",
+    img: img("img_10.jpeg"),
     cat: "Casual",
   },
   {
     title: "Club Wear",
     desc: "After Hours",
-    img: "/images/img_12.jpeg",
+    img: img("img_12.jpeg"),
     cat: "Premium",
   },
   {
     title: "Pyjamas",
     desc: "Comfort, Reimagined",
-    img: "/images/img_13.jpeg",
+    img: img("img_13.jpeg"),
     cat: "Casual",
   },
   {
     title: "Smart Casuals",
     desc: "Weekend Ready",
-    img: "/images/img_4.jpeg",
+    img: img("img_4.jpeg"),
     cat: "Casual",
   },
 ];
@@ -58,37 +59,37 @@ const lookbook = [
   {
     tag: "Crafted for Movement",
     cap: "Wherever the day takes you.",
-    img: "/images/img_11.jpeg",
+    img: img("img_11.jpeg"),
     wide: true,
   },
   {
     tag: "Style Formals",
     cap: "From Sun to Scene",
-    img: "/images/img_6.jpeg",
+    img: img("img_6.jpeg"),
     wide: false,
   },
   {
     tag: "Evening Formals",
     cap: "After Hours, Done Right",
-    img: "/images/img_7.jpeg",
+    img: img("img_7.jpeg"),
     wide: false,
   },
   {
     tag: "Measured Boldness",
     cap: "Expressed through clarity.",
-    img: "/images/img_1.jpeg",
+    img: img("img_1.jpeg"),
     wide: true,
   },
   {
     tag: "Heritage Tones",
     cap: "Retail Ally",
-    img: "/images/img_8.jpeg",
+    img: img("img_8.jpeg"),
     wide: false,
   },
   {
     tag: "On Holiday Mode",
     cap: "Where days slow down.",
-    img: "/images/img_12.jpeg",
+    img: img("img_12.jpeg"),
     wide: false,
   },
 ];
@@ -112,63 +113,63 @@ const Collections = () => {
       {
         id: "F101",
         name: "Navy Wool Suit",
-        img: "/images/img_6.jpeg",
+        img: img("img_6.jpeg"),
       },
       {
         id: "F102",
         name: "Charcoal Blazer",
-        img: "/images/img_1.jpeg",
+        img: img("img_1.jpeg"),
       },
       {
         id: "F103",
         name: "Crisp White Shirt",
-        img: "/images/img_2.jpeg",
+        img: img("img_2.jpeg"),
       },
     ],
     Casual: [
       {
         id: "C201",
         name: "Linen Shirt",
-        img: "/images/img_7.jpeg",
+        img: img("img_7.jpeg"),
       },
       {
         id: "C202",
         name: "Chino Trousers",
-        img: "/images/img_8.jpeg",
+        img: img("img_8.jpeg"),
       },
       {
         id: "C203",
         name: "Relaxed Blazer",
-        img: "/images/img_4.jpeg",
+        img: img("img_4.jpeg"),
       },
     ],
     Bottoms: [
       {
         id: "B301",
         name: "Tailored Trousers",
-        img: "/images/img_8.jpeg",
+        img: img("img_8.jpeg"),
       },
       {
         id: "B302",
         name: "Slim Denims",
-        img: "/images/img_9.jpeg",
+        img: img("img_9.jpeg"),
       },
       {
         id: "B303",
         name: "Corduroy Pants",
-        img: "/images/img_10.jpeg",
+        img: img("img_10.jpeg"),
       },
     ],
     Premium: [
       {
         id: "P401",
         name: "Velvet Jacket",
-        img: "/images/img_12.jpeg",
+        img: img("img_12.jpeg"),
       },
       {
         id: "P402",
         name: "Silk Shirt",
-        img: "/images/img_11.jpeg",
+        img: img("img_11.jpeg"),
       },
     ],
   };
@@ -191,7 +192,7 @@ const Collections = () => {
       <section className="relative bg-[#0E1A30] text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: "url('/images/img_6.jpeg')" }}
+          style={{ backgroundImage: `url('${img("img_6.jpeg")}')` }}
         />
         <div className="relative max-w-[1180px] mx-auto px-6 md:px-10 py-20 md:py-32">
           <h1

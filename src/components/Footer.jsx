@@ -39,7 +39,7 @@ const Footer = () => {
               <div className="flex items-center">
                 <div className="flex items-center min-w-[100px] sm:min-w-[140px] md:min-w-[180px]">
                   <img
-                    src="/images/with_backdrop.png"
+                    src="/hoo_logo.svg"
                     alt="Onzone – House of Onzone"
                     /* Responsive heights: h-8 for tiny phones -> lg:h-16 for desktops */
                     className="h-8 sm:h-10 md:h-14 lg:h-16 w-auto object-contain"
