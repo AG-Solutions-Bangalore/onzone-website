@@ -1,33 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { img } from "../lib/utils.js";
 
 const Collections = () => {
   const cards = [
     {
       title: "Formals",
       desc: "Boardroom to Evening",
-      img: "/images/img_12.jpeg",
+      img: img("img_12.jpeg"),
     },
     {
       title: "Smart Casuals",
       desc: "Effortless Presence",
-      img: "/images/img_8.jpeg",
+      img: img("img_8.jpeg"),
     },
     {
       title: "Trousers",
       desc: "Perfectly Tailored",
-      img: "/images/img_6.jpeg",
+      img: img("img_6.jpeg"),
     },
     {
       title: "Denims",
       desc: "Everyday Essential",
-      img: "/images/image.webp",
+      img: img("image.webp"),
     },
     {
       title: "Cargos",
       desc: "Utility meets Style",
-      img: "/images/img_10.jpeg",
+      img: img("img_10.jpeg"),
     },
   ];
 
@@ -121,6 +122,8 @@ const Collections = () => {
                 <img
                   src={card.img}
                   alt={card.title}
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
                 />
 

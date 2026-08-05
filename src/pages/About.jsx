@@ -8,6 +8,7 @@ import {
   Globe2,
   MapPinned,
 } from "lucide-react";
+import { img } from "../lib/utils.js";
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,7 +22,7 @@ const About = () => {
       <section className="relative h-[40vh] md:h-[86vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat bg-center"
-          style={{ backgroundImage: "url('/retail_store_1784887597607.jpg')" }}
+          style={{ backgroundImage: `url('${img("retail_store_1784887597607.jpg")}')` }}
         />
         <div className="absolute inset-0 bg-[#0E1A30]/65" />
         <div className="relative z-10 top-26 text-center px-6 max-w-4xl">
@@ -94,7 +95,7 @@ const About = () => {
           </div>
           <div className="md:w-1/2 min-h-[400px] md:min-h-0 bg-cover bg-center">
             <img
-              src="/images/img_5.jpeg"
+              src={img("img_5.jpeg")}
               alt=""
               className="w-full h-[450px] object-cover object-top"
             />
@@ -128,7 +129,7 @@ const About = () => {
           </div>
           <div className="md:w-1/2 min-h-[400px] md:min-h-0 bg-cover bg-center">
             <img
-              src="/images/img_7.jpeg"
+              src={img("img_7.jpeg")}
               alt=""
               className="w-full h-[470px] object-cover object-top"
             />
@@ -163,7 +164,7 @@ const About = () => {
           </div>
           <div className="md:w-1/2 min-h-[400px] md:min-h-0 bg-cover bg-center">
             <img
-              src="/images/img_8.jpeg"
+              src={img("img_8.jpeg")}
               alt=""
               className="w-full h-[470px] object-cover object-top"
             />
@@ -204,13 +205,13 @@ const About = () => {
             {/* Images */}
             <div className="relative">
               <img
-                src="/images/img_2.jpeg"
+                src={img("img_2.jpeg")}
                 alt=""
                 className="w-full h-[620px] object-cover"
               />
 
               <img
-                src="/images/img_2.jpeg"
+                src={img("img_2.jpeg")}
                 alt=""
                 className="absolute bottom-[-45px] right-[-35px] w-[170px] h-[190px] object-cover border-[8px] border-[#F7F6F4]"
               />
@@ -264,12 +265,12 @@ const About = () => {
 
             <div className="relative">
               <img
-                src="/images/img_2.jpeg"
+                src={img("img_2.jpeg")}
                 alt=""
                 className="w-full h-[620px] object-cover"
               />
               <img
-                src="/images/img_2.jpeg"
+                src={img("img_2.jpeg")}
                 alt=""
                 className="absolute bottom-[-45px] right-[-35px] w-[170px] h-[190px] object-cover border-[8px] border-[#F7F6F4]"
               />
@@ -807,7 +808,7 @@ const About = () => {
       {/* <section className="relative py-24 md:py-32 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/img_6.jpeg')" }}
+          style={{ backgroundImage: `url('${img("img_6.jpeg")}')` }}
         />
         <div className="absolute inset-0 bg-[#0E1A30]/75" />
 

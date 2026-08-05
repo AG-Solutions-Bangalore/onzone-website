@@ -1,53 +1,54 @@
 import React from "react";
+import { img } from "../lib/utils.js";
 
 const Lookbook = () => {
   const cards = [
     {
       tag: "Style Formals",
       cap: "From Sun to Scene",
-      img: "/images/img_6.jpeg",
+      img: img("img_6.jpeg"),
       tall: true,
     },
     {
       tag: "Evening Formals",
       cap: "After Hours, Done Right",
-      img: "/images/img_7.jpeg",
+      img: img("img_7.jpeg"),
       tall: false,
     },
     {
       tag: "Retail Ally",
       cap: "Heritage Tones",
-      img: "/images/img_8.jpeg",
+      img: img("img_8.jpeg"),
       tall: false,
     },
     {
       tag: "Cargo Edit",
       cap: "Built for Real Days",
-      img: "/images/img_9.jpeg",
+      img: img("img_9.jpeg"),
       tall: true,
     },
     {
       tag: "Smart Casual",
       cap: "Built for Your Vibe",
-      img: "/images/img_10.jpeg",
+      img: img("img_10.jpeg"),
       tall: false,
     },
     {
       tag: "Weekend",
       cap: "Crafted for Movement",
-      img: "/images/img_11.jpeg",
+      img: img("img_11.jpeg"),
       tall: false,
     },
     {
       tag: "AW'25",
       cap: "On Holiday Mode",
-      img: "/images/img_12.jpeg",
+      img: img("img_12.jpeg"),
       tall: false,
     },
     {
       tag: "Casual Ally",
       cap: "Crafted for Confidence",
-      img: "/images/img_13.jpeg",
+      img: img("img_13.jpeg"),
       tall: false,
     },
   ];

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { img } from "../lib/utils.js";
 
 const slides = [
   {
@@ -12,7 +13,7 @@ const slides = [
       "Celebrate your presence, no matter the distance. 150+ sharp tailored fits.",
     cta: "Explore Collection",
     ctaLink: "/collections",
-    img: "/images/img_0.jpeg",
+    img: img("img_0.jpeg"),
     accent: "#C6963F",
   },
   {
@@ -23,7 +24,7 @@ const slides = [
       "Woven for modern versatility from boardroom to weekend gatherings.",
     cta: "Shop Checks",
     ctaLink: "/collections",
-    img: "/images/img_1.jpeg",
+    img: img("img_1.jpeg"),
     accent: "#C6963F",
   },
   {
@@ -34,7 +35,7 @@ const slides = [
       "Breathable textures, perfect drape, engineered for everyday comfort.",
     cta: "Shop Casuals",
     ctaLink: "/collections",
-    img: "/images/img_2.jpeg",
+    img: img("img_2.jpeg"),
     accent: "#C6963F",
   },
   {
@@ -44,7 +45,7 @@ const slides = [
     subtitle: "Bold tailored statement pieces designed to command attention.",
     cta: "View Prints",
     ctaLink: "/collections",
-    img: "/images/img_4.jpeg",
+    img: img("img_4.jpeg"),
     accent: "#C6963F",
   },
 ];
@@ -130,9 +131,9 @@ export default function Hero() {
                   <span className="inline-block w-fit px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-[0.2em] uppercase bg-[#C6963F] text-[#0E1A30] shadow-lg mb-4">
                     {slide.tag}
                   </span>
-                  <h2 className="font-serif-luxury text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] text-[#FDFAF5] max-w-2xl">
+                  <h1 className="font-serif-luxury text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] text-[#FDFAF5] max-w-2xl">
                     {slide.headline}
-                  </h2>
+                  </h1>
                   <p className="text-[#FDFAF5]/70 text-sm sm:text-lg max-w-lg mt-3 leading-relaxed">
                     {slide.subtitle}
                   </p>
@@ -175,13 +176,15 @@ export default function Hero() {
           <button
             key={i}
             onClick={() => setIndex(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              i === index
-                ? "w-8 bg-[#C6963F]"
-                : "w-2 bg-[#0E1A30]/30 hover:bg-[#0E1A30]/60"
-            }`}
+            className="relative flex items-center justify-center p-2"
             aria-label={`Slide ${i + 1}`}
-          />
+          >
+            <span
+              className={`block h-2 rounded-full transition-all duration-300 ${
+                i === index ? "w-8 bg-[#C6963F]" : "w-2 bg-[#0E1A30]/30 hover:bg-[#0E1A30]/60"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </section>

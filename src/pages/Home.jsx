@@ -1,30 +1,29 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import Hero from "../components/Hero";
 import CategoriesStrip from "../components/CategoriesStrip";
-import Story from "../components/Story";
-import Collections from "../components/Collections";
-import RetailFirst from "../components/RetailFirst";
-import Lookbook from "../components/Lookbook";
-import Strengths from "../components/Strengths";
-import Philosophy from "../components/Philosophy";
-import QuoteBlock from "../components/QuoteBlock";
-import Contact from "../components/Contact";
-import BrandCollaborators from "../components/BrandCollab";
+
+const Story = lazy(() => import("../components/Story"));
+const Collections = lazy(() => import("../components/Collections"));
+const RetailFirst = lazy(() => import("../components/RetailFirst"));
+const Strengths = lazy(() => import("../components/Strengths"));
+const Philosophy = lazy(() => import("../components/Philosophy"));
+const QuoteBlock = lazy(() => import("../components/QuoteBlock"));
 
 const Home = () => {
   return (
     <div>
       <Hero />
       <CategoriesStrip />
-      <Story />
-      {/* <BrandCollaborators /> */}
-      <Collections />
-      <RetailFirst />
-      {/* <Lookbook /> */}
-      <Strengths />
-      <Philosophy />
-      <QuoteBlock />
-      {/* <Contact /> */}
+      <Suspense
+        fallback={<div className="min-h-[60vh] bg-[#FDFAF5]" aria-hidden />}
+      >
+        <Story />
+        <Collections />
+        <RetailFirst />
+        <Strengths />
+        <Philosophy />
+        <QuoteBlock />
+      </Suspense>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { img } from "../lib/utils.js";
 
 const BrandCollaboration = () => {
   return (
@@ -39,7 +40,7 @@ const BrandCollaboration = () => {
               }}
             >
               <img
-                src="/images/cl_onzone.png"
+                src={img("cl_onzone.png")}
                 alt="Scot Lee"
                 className="h-8 md:h-12 w-auto object-contain brightness-90 hover:brightness-100 transition-all duration-300"
               />
@@ -69,7 +70,7 @@ const BrandCollaboration = () => {
               }}
             >
               <img
-                src="/images/cl_scot_lee.png"
+                src="/hoo_logo.svg"
                 alt="Onzone – House of Onzone"
                 className="h-8 md:h-12 w-auto object-contain brightness-90 hover:brightness-100 transition-all duration-300"
               />

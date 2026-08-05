@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
+import { img } from "../lib/utils.js";
 
 /* ── Story Slider Items ── */
 const storySlides = [
@@ -11,35 +12,35 @@ const storySlides = [
     tag: "THE FOUNDING",
     title: "Founded in Bangalore",
     desc: "Built on an unglamorous ambition — crafting clothing retailers could rely on season after season. Founded by Rajesh Parekh and Mukesh Parekh.",
-    img: "/images/red_yellow_shirt_1784885132692.jpg",
+    img: img("red_yellow_shirt_1784885132692.jpg"),
   },
   {
     id: 2,
     tag: "CATEGORY EXPANSION",
     title: "Shirts to Trousers & Cargos",
     desc: "Steadily expanded from formal shirts into formal trousers, smart casuals, cotton trousers, jeans, pyjamas, cargos, and imported club wear trousers.",
-    img: "/images/img_2.jpeg",
+    img: img("img_2.jpeg"),
   },
   {
     id: 3,
     tag: "RETAIL NETWORK",
     title: "2,500+ Retail Partners",
     desc: "Grew organically from Bangalore across Karnataka, South India, and today operates across South, Central, Central-West, North-East, and North India.",
-    img: "/images/img_3.jpeg",
+    img: img("img_3.jpeg"),
   },
   {
     id: 4,
     tag: "OPERATIONAL STRENGTH",
     title: "150,000+ Garment Capacity",
     desc: "Stock depth of 100,000+ shirts and 50,000+ trousers & denims. Directly serving 2,500+ active retail partners.",
-    img: "/images/img_4.jpeg",
+    img: img("img_4.jpeg"),
   },
   {
     id: 5,
     tag: "QUIET CONSISTENCY",
     title: "25+ Years of Trust",
     desc: "25 years of quiet, organic growth built on relationships, repeat business, and trust — not noise or aggressive marketing.",
-    img: "/luxury_menswear_1_1784887541453.jpg",
+    img: img("luxury_menswear_1_1784887541453.jpg"),
   },
 ];
 
@@ -148,16 +149,18 @@ const Story = () => {
                 </span>
                 <div className="flex items-center gap-2 md:gap-3">
                   <img
-                    src="/images/with_backdrop.png"
+                    src="/hoo_logo.svg"
                     alt="Scot Lee"
-                    className="h-8 md:h-22 w-auto object-contain transition-all duration-300 brightness-90 hover:brightness-100 hover:scale-105"
+                    className="h-8 md:h-12  w-auto object-contain transition-all duration-300 brightness-90 hover:brightness-100 hover:scale-105"
                   />
                   <span className="text-[#c9a84c] opacity-50 text-sm md:text-base">
                     ✦
                   </span>
                   <img
-                    src="/images/scotlee_logo.jpg"
+                    src={img("scotlee_logo.jpg")}
                     alt="Onzone – House of Onzone"
+                    loading="lazy"
+                    decoding="async"
                     className="h-8 md:h-22 w-auto object-contain transition-all duration-300 brightness-90 hover:brightness-100 hover:scale-105"
                   />
                 </div>
@@ -189,6 +192,8 @@ const Story = () => {
                   <img
                     src={activeSlide.img}
                     alt={activeSlide.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-top filter brightness-[0.88] hover:scale-105 transition-transform duration-700"
                   />
                   {/* Gradient Overlay */}

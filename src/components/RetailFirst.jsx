@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { img } from "../lib/utils.js";
 
 const RetailFirst = () => {
   useEffect(() => {
@@ -23,8 +24,10 @@ const RetailFirst = () => {
             className="relative rounded-2xl overflow-hidden shadow-xl"
           >
             <img
-              src="/images/img_5.jpeg"
+              src={img("img_5.jpeg")}
               alt="Onzone retail"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover min-h-[280px] md:min-h-[450px]"
             />
           </div>
