@@ -40,7 +40,7 @@ const BrandCollaboration = () => {
               }}
             >
               <img
-                src={img("cl_onzone.png")}
+                src="/assets/scot-lee-logo.png"
                 alt="Scot Lee"
                 className="h-8 md:h-12 w-auto object-contain brightness-90 hover:brightness-100 transition-all duration-300"
               />
@@ -70,8 +70,8 @@ const BrandCollaboration = () => {
               }}
             >
               <img
-                src="/hoo_logo.svg"
-                alt="Onzone – House of Onzone"
+                src="/assets/onzone-logo.png"
+                alt="ONZONE – Timeless Elegance"
                 className="h-8 md:h-12 w-auto object-contain brightness-90 hover:brightness-100 transition-all duration-300"
               />
             </div>

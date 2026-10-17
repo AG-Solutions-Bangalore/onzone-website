@@ -6,6 +6,7 @@ import {
   FaEnvelope,
   FaFacebook,
   FaInstagram,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -39,7 +40,7 @@ const Footer = () => {
               <div className="flex items-center">
                 <div className="flex items-center min-w-[100px] sm:min-w-[140px] md:min-w-[180px]">
                   <img
-                    src="/hoo_logo.svg"
+                    src="/assets/hoo_logo.svg"
                     alt="Onzone – House of Onzone"
                     /* Responsive heights: h-8 for tiny phones -> lg:h-16 for desktops */
                     className="h-8 sm:h-10 md:h-14 lg:h-16 w-auto object-contain"
@@ -135,8 +136,25 @@ const Footer = () => {
               >
                 <FaInstagram className="text-xl" />
               </a>
+              <a
+                href="https://wa.me/919916082518?text=Hello%20House%20of%20ONZONE%2C%20I%20would%20like%20to%20join%20your%20WhatsApp%20Broadcast."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#25D366] hover:text-white transition-colors"
+                aria-label="WhatsApp Broadcast"
+              >
+                <FaWhatsapp className="text-xl" />
+              </a>
             </div>
-            {/* <span className="text-white/60 text-[0.88rem]">@houseofonzone</span> */}
+            <a
+              href="https://wa.me/919916082518?text=Hello%20House%20of%20ONZONE%2C%20I%20would%20like%20to%20join%20your%20WhatsApp%20Broadcast."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mt-2 py-1.5 px-3 rounded-full bg-[#25D366]/15 border border-[#25D366]/35 text-[#25D366] hover:bg-[#25D366] hover:text-white text-[11px] font-mono tracking-wider uppercase transition-all no-underline"
+            >
+              <FaWhatsapp className="text-sm" />
+              <span>WhatsApp Broadcast</span>
+            </a>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import { X, Phone, CheckCircle2 } from "lucide-react";
 
 const MobilePopup = () => {
@@ -8,26 +9,40 @@ const MobilePopup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    // Check if user has already submitted mobile number
+    // Only trigger when visiting the home page
+    if (location.pathname !== "/") {
+      setIsOpen(false);
+      return;
+    }
+
+    // Check if user has already submitted mobile number or dismissed this session
     try {
       if (localStorage.getItem("onzone_mobile_submitted") === "true") {
+        return;
+      }
+      if (sessionStorage.getItem("onzone_popup_dismissed") === "true") {
         return;
       }
     } catch {
       // Storage access check fallback
     }
 
+    // Trigger popup exactly after 20 seconds on home page
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 1200);
+    }, 20000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [location.pathname]);
 
   const handleClose = useCallback(() => {
     setIsOpen(false);
+    try {
+      sessionStorage.setItem("onzone_popup_dismissed", "true");
+    } catch {}
   }, []);
 
   const handleMobileChange = (e) => {

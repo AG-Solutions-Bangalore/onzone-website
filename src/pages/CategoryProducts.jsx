@@ -17,15 +17,19 @@ const CategoryProducts = () => {
   const products = catKey ? productsByCat[catKey] : [];
 
   return (
-    <div className="max-w-[1180px] mx-auto px-6 md:px-10 py-16">
-      <div className="mb-8">
+    <div className="max-w-[1180px] mx-auto px-6 md:px-10 pt-28 pb-16">
+      <div className="mb-8" data-aos="fade-up">
         <h1 className="text-3xl font-serif-luxury">{catKey || "Products"}</h1>
         <p className="text-sm text-gray-600 mt-2">
           Showing all products for {catKey || "this category"}.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         {products.map((p) => (
           <Link
             key={p.id}

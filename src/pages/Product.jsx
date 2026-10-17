@@ -4,11 +4,14 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { getProductById } from "../data/products";
 
+import MacroMagnifierImage from "../components/MacroMagnifierImage";
+
 const Product = () => {
   useEffect(() => {
     AOS.init({
       duration: 800,
-      once: true,
+      once: false,
+      mirror: true,
       offset: 50,
     });
   }, []);
@@ -36,7 +39,7 @@ const Product = () => {
   }
 
   return (
-    <section className="bg-[#FDFAF5] text-[#0E1A30] min-h-screen py-12 md:py-20">
+    <section className="bg-[#FDFAF5] text-[#0E1A30] min-h-screen pt-28 pb-12 md:pb-20">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         {/* Breadcrumb */}
         {/* <div
@@ -62,16 +65,18 @@ const Product = () => {
         </div> */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-          {/* Image */}
-          <div
-            data-aos="fade-right"
-            className="relative group overflow-hidden rounded-2xl bg-[#F0EDE8] shadow-xl"
-          >
-            <div
-              className="w-full h-96 md:h-[650px] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-              style={{ backgroundImage: `url('${product.img}')` }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#FDFAF5]/40 to-transparent pointer-events-none" />
+          {/* Image with 1.5x Lens */}
+          <div data-aos="fade-right">
+            <MacroMagnifierImage
+              src={product.img}
+              alt={product.name}
+              lensSize={200}
+              badgeText="1.5X LENS"
+              className="rounded-2xl bg-[#F0EDE8] shadow-xl h-96 md:h-[650px]"
+              imgClassName="object-cover object-top"
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-[#FDFAF5]/30 to-transparent pointer-events-none" />
+            </MacroMagnifierImage>
           </div>
 
           {/* Details – no price, no extra meta */}

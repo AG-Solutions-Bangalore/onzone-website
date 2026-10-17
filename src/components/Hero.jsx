@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
-import { img } from "../lib/utils.js";
+import React from "react";
+// import React, { useState, useEffect, useCallback } from "react";
+// import { motion } from "framer-motion";
+// import { Link } from "react-router-dom";
+// import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+// import { img } from "../lib/utils.js";
 
+/*
 const slides = [
   {
     id: 1,
@@ -51,8 +53,10 @@ const slides = [
 ];
 
 const AUTO_PLAY_MS = 4000;
+*/
 
 export default function Hero() {
+  /*
   const [index, setIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -81,17 +85,37 @@ export default function Hero() {
     setTouchStart(0);
     setTouchEnd(0);
   };
+  */
 
   return (
     <section
-      className="relative w-full bg-[#FDFAF5] py-8 sm:py-12 overflow-hidden select-none"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      className="relative w-full bg-[#FDFAF5] pt-24 sm:pt-28 pb-8 sm:pb-12 overflow-hidden select-none"
       id="hero"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative">
-        {/* Carousel Track */}
+        {/* Video Placeholder Container */}
+        <div className="relative h-[360px] sm:h-[480px] lg:h-[540px] max-w-[1060px] mx-auto rounded-2xl border-2 border-dashed border-[#C6963F]/40 bg-[#0E1A30]/5 flex flex-col items-center justify-center text-center p-6 shadow-sm">
+          <div className="w-16 h-16 rounded-full bg-[#0E1A30] text-[#C6963F] flex items-center justify-center mb-4 shadow-md">
+            <svg
+              className="w-7 h-7 translate-x-0.5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+          <p className="font-serif-luxury text-2xl sm:text-4xl text-[#0E1A30] font-medium tracking-wide">
+            Video Coming
+          </p>
+        </div>
+      </div>
+
+      {/*
+      ============================================================
+      ORIGINAL HERO CAROUSEL SECTION (COMMENTED OUT BELOW)
+      ============================================================
+
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative">
         <div className="relative h-[420px] sm:h-[500px] lg:h-[560px] flex items-center justify-center">
           {slides.map((slide, i) => {
             let offset = i - index;
@@ -153,7 +177,6 @@ export default function Hero() {
           })}
         </div>
 
-        {/* Navigation Arrows – adapted for light background */}
         <button
           onClick={goPrev}
           className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 rounded-full bg-white shadow-xl border border-[#C6963F]/30 text-[#0E1A30] hover:bg-[#C6963F] hover:text-white transition-all duration-300 flex items-center justify-center"
@@ -170,7 +193,6 @@ export default function Hero() {
         </button>
       </div>
 
-      {/* Pagination Dots – dark for light background */}
       <div className="flex items-center justify-center gap-2.5 mt-5 sm:mt-7">
         {slides.map((_, i) => (
           <button
@@ -187,6 +209,7 @@ export default function Hero() {
           </button>
         ))}
       </div>
+      */}
     </section>
   );
 }

@@ -1,6 +1,8 @@
 import React from "react";
 
 const UtilityBar = () => {
+  return null;
+  /*
   return (
     <div
       className="flex flex-col sm:flex-row justify-between items-center py-2 px-4 md:px-10 font-mono text-[0.6rem] md:text-[0.62rem] tracking-widest uppercase text-center gap-1 sm:gap-0"
@@ -12,6 +14,7 @@ const UtilityBar = () => {
       </span>
     </div>
   );
+  */
 };
 
 export default UtilityBar;
