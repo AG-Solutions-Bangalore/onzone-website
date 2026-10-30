@@ -4,7 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { getProductById } from "../data/products";
 
-import MacroMagnifierImage from "../components/MacroMagnifierImage";
+
 
 const Product = () => {
   useEffect(() => {
@@ -67,16 +67,17 @@ const Product = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {/* Image with 1.5x Lens */}
           <div data-aos="fade-right">
-            <MacroMagnifierImage
-              src={product.img}
-              alt={product.name}
-              lensSize={200}
-              badgeText="1.5X LENS"
-              className="rounded-2xl bg-[#F0EDE8] shadow-xl h-96 md:h-[650px]"
-              imgClassName="object-cover object-top"
-            >
+            <div className="relative rounded-2xl bg-[#F0EDE8] shadow-xl h-96 md:h-[650px] overflow-hidden">
+
+              <img
+                src={product.img}
+                alt={product.name}
+                className="w-full h-full object-cover object-top"
+              />
+
               <div className="absolute inset-0 bg-gradient-to-t from-[#FDFAF5]/30 to-transparent pointer-events-none" />
-            </MacroMagnifierImage>
+
+            </div>
           </div>
 
           {/* Details – no price, no extra meta */}

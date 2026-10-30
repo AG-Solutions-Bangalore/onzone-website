@@ -29,7 +29,7 @@ import {
   UserCheck
 } from "lucide-react";
 import { img } from "../lib/utils.js";
-import MacroMagnifierImage from "../components/MacroMagnifierImage";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -604,117 +604,123 @@ const Process = () => {
             {/* ──────────────────────────────────────────────────────────
                 LEFT COLUMN: GOLD-BORDERED INTERACTIVE IMAGE CARD
             ────────────────────────────────────────────────────────── */}
-            <div className="lg:col-span-6" data-aos="fade-right">
-              <div className="relative rounded-3xl p-2.5 sm:p-3.5 border-2 border-[#C6963F]/80 shadow-[0_0_40px_rgba(198,150,63,0.25)] bg-gradient-to-b from-[#131926] via-[#0E1522] to-[#0A0E17]">
-                {/* Main Interactive Photo with Macro Magnifier Lens */}
-                <MacroMagnifierImage
-                  src={currentImg}
-                  alt={currentStage.title}
-                  lensSize={180}
-                  badgeText="1.5X LENS"
-                  showHint={false}
-                  className="rounded-2xl aspect-[4/3] sm:aspect-[16/11] bg-black/50"
-                  imgClassName="object-cover object-center"
+           <div className="lg:col-span-6" data-aos="fade-right">
+  <div className="relative rounded-3xl p-2.5 sm:p-3.5 border-2 border-[#C6963F]/80 shadow-[0_0_40px_rgba(198,150,63,0.25)] bg-gradient-to-b from-[#131926] via-[#0E1522] to-[#0A0E17]">
+
+    {/* Main Interactive Photo with Macro Magnifier Lens */}
+    <div className="relative rounded-2xl aspect-[4/3] sm:aspect-[16/11] bg-black/50 overflow-hidden">
+
+      <img
+        src={currentImg}
+        alt={currentStage.title}
+        className="w-full h-full object-cover object-center"
+      />
+
+      {/* Subtle Contrast Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
+
+      {/* Top-Left Glassmorphic Badge: STAGE 0X / 06 */}
+      <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 flex items-center gap-2 pointer-events-none z-10">
+        <span className="w-2 h-2 rounded-full bg-[#C6963F] animate-pulse" />
+        <span className="font-mono text-xs uppercase tracking-widest text-[#FDFAF5] font-bold">
+          STAGE {currentStage.step} / 06
+        </span>
+      </div>
+
+      {/* Interactive Hotspot Pin on the Garment */}
+      {currentStage.hotspots.map((hotspot, hIdx) => (
+        <div
+          key={hIdx}
+          style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
+          className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20"
+          onClick={(e) => {
+            e.stopPropagation();
+            setActiveHotspot(activeHotspot === hIdx ? null : hIdx);
+          }}
+        >
+          <div className="relative flex items-center justify-center">
+            <span className="absolute w-8 h-8 rounded-full bg-[#C6963F]/40 animate-ping" />
+
+            <button
+              className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all ${
+                activeHotspot === hIdx
+                  ? "bg-[#C6963F] border-white text-black scale-125 shadow-[0_0_20px_#C6963F]"
+                  : "bg-black/90 border-[#C6963F] text-[#C6963F] hover:scale-115"
+              }`}
+              aria-label={`Inspect ${hotspot.title}`}
+            >
+              <Eye className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Hotspot Floating Tooltip */}
+          {activeHotspot === hIdx && (
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-56 sm:w-64 p-3.5 rounded-xl bg-[#0E1A30]/95 border border-[#C6963F]/60 backdrop-blur-xl shadow-2xl text-left z-30 animate-in fade-in zoom-in-95 duration-200">
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-mono text-[10px] text-[#C6963F] uppercase tracking-wider font-bold">
+                  MACRO DETAIL
+                </span>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveHotspot(null);
+                  }}
+                  className="text-white/60 hover:text-white"
                 >
-                  {/* Subtle Contrast Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
-
-                  {/* Top-Left Glassmorphic Badge: STAGE 0X / 06 */}
-                  <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 flex items-center gap-2 pointer-events-none z-10">
-                    <span className="w-2 h-2 rounded-full bg-[#C6963F] animate-pulse" />
-                    <span className="font-mono text-xs uppercase tracking-widest text-[#FDFAF5] font-bold">
-                      STAGE {currentStage.step} / 06
-                    </span>
-                  </div>
-
-                  {/* Interactive Hotspot Pin on the Garment */}
-                  {currentStage.hotspots.map((hotspot, hIdx) => (
-                    <div
-                      key={hIdx}
-                      style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
-                      className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setActiveHotspot(activeHotspot === hIdx ? null : hIdx);
-                      }}
-                    >
-                      <div className="relative flex items-center justify-center">
-                        <span className="absolute w-8 h-8 rounded-full bg-[#C6963F]/40 animate-ping" />
-                        <button
-                          className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all ${
-                            activeHotspot === hIdx
-                              ? "bg-[#C6963F] border-white text-black scale-125 shadow-[0_0_20px_#C6963F]"
-                              : "bg-black/90 border-[#C6963F] text-[#C6963F] hover:scale-115"
-                          }`}
-                          aria-label={`Inspect ${hotspot.title}`}
-                        >
-                          <Eye className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-
-                      {/* Hotspot Floating Tooltip */}
-                      {activeHotspot === hIdx && (
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-56 sm:w-64 p-3.5 rounded-xl bg-[#0E1A30]/95 border border-[#C6963F]/60 backdrop-blur-xl shadow-2xl text-left z-30 animate-in fade-in zoom-in-95 duration-200">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="font-mono text-[10px] text-[#C6963F] uppercase tracking-wider font-bold">
-                              MACRO DETAIL
-                            </span>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setActiveHotspot(null);
-                              }}
-                              className="text-white/60 hover:text-white"
-                            >
-                              <X className="w-3 h-3" />
-                            </button>
-                          </div>
-                          <h5 className="font-semibold text-white text-xs mb-1">
-                            {hotspot.title}
-                          </h5>
-                          <p className="text-white/70 text-[11px] leading-relaxed">
-                            {hotspot.desc}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-
-                  {/* Bottom Controls Bar (Inside Image Card) */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-auto">
-                    {/* Bottom-Left: "Tap to explore detail view" Pill */}
-                    <div className="bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 text-[11px] font-mono text-white/80 flex items-center gap-2 pointer-events-none">
-                      <ZoomIn className="w-3.5 h-3.5 text-[#C6963F]" />
-                      <span>Hover for 1.5x lens</span>
-                    </div>
-
-                    {/* Bottom-Right: 4 Multi-Angle Interactive Thumbnails Bar */}
-                    <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/80 backdrop-blur-md border border-white/20">
-                      {currentStage.thumbnails.map((thumbUrl, tIdx) => (
-                        <button
-                          key={tIdx}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveThumb(tIdx);
-                          }}
-                          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                            activeThumb === tIdx
-                              ? "border-[#C6963F] scale-105 shadow-[0_0_12px_rgba(198,150,63,0.6)]"
-                              : "border-transparent opacity-60 hover:opacity-100 hover:border-white/40"
-                          }`}
-                        >
-                          <img
-                            src={thumbUrl}
-                            alt={`Angle 0${tIdx + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </MacroMagnifierImage>
+                  <X className="w-3 h-3" />
+                </button>
               </div>
+
+              <h5 className="font-semibold text-white text-xs mb-1">
+                {hotspot.title}
+              </h5>
+
+              <p className="text-white/70 text-[11px] leading-relaxed">
+                {hotspot.desc}
+              </p>
             </div>
+          )}
+        </div>
+      ))}
+
+      {/* Bottom Controls Bar (Inside Image Card) */}
+      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-auto">
+
+        {/* Bottom-Left Pill */}
+        <div className="bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 text-[11px] font-mono text-white/80 flex items-center gap-2 pointer-events-none">
+          <ZoomIn className="w-3.5 h-3.5 text-[#C6963F]" />
+          <span>Hover for 1.5x lens</span>
+        </div>
+
+        {/* Bottom-Right Thumbnails */}
+        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/80 backdrop-blur-md border border-white/20">
+          {currentStage.thumbnails.map((thumbUrl, tIdx) => (
+            <button
+              key={tIdx}
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveThumb(tIdx);
+              }}
+              className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                activeThumb === tIdx
+                  ? "border-[#C6963F] scale-105 shadow-[0_0_12px_rgba(198,150,63,0.6)]"
+                  : "border-transparent opacity-60 hover:opacity-100 hover:border-white/40"
+              }`}
+            >
+              <img
+                src={thumbUrl}
+                alt={`Angle 0${tIdx + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
             {/* ──────────────────────────────────────────────────────────
                 RIGHT COLUMN: EDITORIAL NARRATIVE & 3 ARCHITECTURAL PILLARS

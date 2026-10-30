@@ -13,7 +13,7 @@ import {
   Disc3
 } from "lucide-react";
 import { img } from "../lib/utils.js";
-import MacroMagnifierImage from "../components/MacroMagnifierImage";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -600,20 +600,21 @@ const Collections = () => {
             </button>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 items-center">
-              <MacroMagnifierImage
-                src={selectedProduct.img}
-                alt={selectedProduct.name}
-                lensSize={180}
-                badgeText="1.5X LENS"
-                className="aspect-[3/4] rounded-2xl border border-white/15 shadow-2xl bg-[#091222]"
-                imgClassName="object-top"
-              >
-                <div className="absolute top-4 left-4 pointer-events-none z-10">
-                  <span className="font-mono text-[9px] uppercase tracking-wider bg-[#C6963F] text-[#0E1A30] px-3 py-1 rounded-full font-bold">
-                    {selectedProduct.badge}
-                  </span>
-                </div>
-              </MacroMagnifierImage>
+              <div className="relative aspect-[3/4] rounded-2xl border border-white/15 shadow-2xl bg-[#091222] overflow-hidden">
+
+  <img
+    src={selectedProduct.img}
+    alt={selectedProduct.name}
+    className="w-full h-full object-cover object-top"
+  />
+
+  <div className="absolute top-4 left-4 pointer-events-none z-10">
+    <span className="font-mono text-[9px] uppercase tracking-wider bg-[#C6963F] text-[#0E1A30] px-3 py-1 rounded-full font-bold">
+      {selectedProduct.badge}
+    </span>
+  </div>
+
+</div>
 
               <div className="space-y-6">
                 <div>

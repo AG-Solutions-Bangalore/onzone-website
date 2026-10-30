@@ -6,7 +6,6 @@ import CategoriesStrip from "../components/CategoriesStrip";
 const Story = lazy(() => import("../components/Story"));
 const CraftAnatomy = lazy(() => import("../components/CraftAnatomy"));
 const Collections = lazy(() => import("../components/Collections"));
-const FabricWeaves = lazy(() => import("../components/FabricWeaves"));
 const FitGuide = lazy(() => import("../components/FitGuide"));
 const RetailFirst = lazy(() => import("../components/RetailFirst"));
 const Strengths = lazy(() => import("../components/Strengths"));
@@ -39,10 +38,7 @@ const Home = () => {
         <CraftAnatomy />
 
         {/* 6. Collections Showcase */}
-        <Collections />
-
-        {/* 7. Fine Weaves & Textile Archive (English Mill Connoisseur Library) */}
-        <FabricWeaves />
+        <Collections />        
 
         {/* 8. Architecture of Fit & Collar (Blackberrys Power Fit Principle) */}
         <FitGuide />

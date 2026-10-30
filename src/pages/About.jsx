@@ -15,7 +15,6 @@ import {
   Maximize2
 } from "lucide-react";
 import { img } from "../lib/utils.js";
-import MacroMagnifierImage from "../components/MacroMagnifierImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -321,43 +320,49 @@ const About = () => {
             data-aos="fade-right"
           >
             {/* Primary Main Image with 1.5x Lens */}
-            <MacroMagnifierImage
-              src={img("img_6.jpeg")}
-              alt="Onzone Tailoring Masterpiece"
-              lensSize={160}
-              badgeText="1.5X LENS"
-              className="about-parallax-img w-4/5 h-[420px] sm:h-[500px] rounded-3xl shadow-2xl border border-[#0E1A30]/10"
-              imgClassName="object-top"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A30]/80 via-transparent to-transparent opacity-80 pointer-events-none" />
-              <div className="absolute bottom-6 left-6 text-white pointer-events-none z-10">
-                <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#C6963F] block">
-                  The White Shirt Benchmark
-                </span>
-                <span className="font-serif-luxury text-xl sm:text-2xl font-normal">
-                  Fused German Interlining
-                </span>
-              </div>
-            </MacroMagnifierImage>
+            {/* Primary Main Image */}
+<div className="about-parallax-img relative w-4/5 h-[420px] sm:h-[500px] rounded-3xl shadow-2xl border border-[#0E1A30]/10 overflow-hidden">
+  <img
+    src={img("img_6.jpeg")}
+    alt="Onzone Tailoring Masterpiece"
+    className="w-full h-full object-cover object-top"
+  />
 
-            {/* Secondary Floating Offset Image with 1.5x Lens */}
-            <MacroMagnifierImage
-              src={img("img_7.jpeg")}
-              alt="Onzone Linen Weave"
-              lensSize={140}
-              badgeText="1.5X LENS"
-              className="about-parallax-img absolute right-0 bottom-4 w-1/2 sm:w-3/5 h-[280px] sm:h-[340px] rounded-3xl shadow-[0_25px_60px_rgba(14,26,48,0.25)] border-4 border-[#FDFAF5] z-10"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A30]/80 via-transparent to-transparent opacity-70 pointer-events-none" />
-              <div className="absolute bottom-4 left-4 text-white pointer-events-none z-10">
-                <span className="font-mono text-[9px] tracking-[0.18em] uppercase text-[#C6963F] block">
-                  Textile Provenance
-                </span>
-                <span className="font-serif-luxury text-base sm:text-lg font-normal">
-                  Air-Washed Pure Flax
-                </span>
-              </div>
-            </MacroMagnifierImage>
+  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A30]/80 via-transparent to-transparent opacity-80 pointer-events-none" />
+
+  <div className="absolute bottom-6 left-6 text-white pointer-events-none z-10">
+    <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#C6963F] block">
+      The White Shirt Benchmark
+    </span>
+
+    <span className="font-serif-luxury text-xl sm:text-2xl font-normal">
+      Fused German Interlining
+    </span>
+  </div>
+</div>
+
+            {/* Secondary Floating Offset Image */}
+<div className="about-parallax-img absolute right-0 bottom-4 w-1/2 sm:w-3/5 h-[280px] sm:h-[340px] rounded-3xl shadow-[0_25px_60px_rgba(14,26,48,0.25)] border-4 border-[#FDFAF5] z-10 overflow-hidden">
+
+  <img
+    src={img("img_7.jpeg")}
+    alt="Onzone Linen Weave"
+    className="w-full h-full object-cover"
+  />
+
+  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A30]/80 via-transparent to-transparent opacity-70 pointer-events-none" />
+
+  <div className="absolute bottom-4 left-4 text-white pointer-events-none z-10">
+    <span className="font-mono text-[9px] tracking-[0.18em] uppercase text-[#C6963F] block">
+      Textile Provenance
+    </span>
+
+    <span className="font-serif-luxury text-base sm:text-lg font-normal">
+      Air-Washed Pure Flax
+    </span>
+  </div>
+
+</div>
 
             {/* Savile Row Stamp Badge */}
             <div className="absolute -top-4 right-12 z-20 w-24 h-24 rounded-full bg-[#0E1A30] border-2 border-[#C6963F] text-[#FDFAF5] flex flex-col items-center justify-center text-center p-2 shadow-2xl rotate-12 hover:rotate-0 transition-transform">
@@ -474,37 +479,39 @@ const About = () => {
           {/* Active Milestone Display Card (Split Screen Photo + Story) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white/[0.04] backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl">
             {/* Left: Giant Cinematic Image with 1.5x Lens */}
-            <div className="lg:col-span-6">
-              <MacroMagnifierImage
-                src={currentMilestone.img}
-                alt={currentMilestone.title}
-                lensSize={180}
-                badgeText="1.5X LENS"
-                className="h-[360px] sm:h-[480px] rounded-2xl border border-white/15 shadow-xl"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A30]/90 via-transparent to-transparent pointer-events-none" />
+           <div className="lg:col-span-6">
+  <div className="relative h-[360px] sm:h-[480px] rounded-2xl border border-white/15 shadow-xl overflow-hidden">
 
-                {/* Floating Stat Pill on Image */}
-                <div className="absolute top-5 right-5 bg-[#0E1A30]/80 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center pointer-events-none z-10">
-                  <span className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#C6963F] block leading-none">
-                    {currentMilestone.stat}
-                  </span>
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-white/70 block mt-1">
-                    {currentMilestone.statLabel}
-                  </span>
-                </div>
+    <img
+      src={currentMilestone.img}
+      alt={currentMilestone.title}
+      className="w-full h-full object-cover"
+    />
 
-                {/* Year Stamp */}
-                <div className="absolute bottom-5 left-5 pointer-events-none z-10">
-                  <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#C6963F] block">
-                    MILESTONE ARCHIVE
-                  </span>
-                  <span className="font-serif-luxury text-3xl sm:text-4xl font-normal text-white">
-                    {currentMilestone.year}
-                  </span>
-                </div>
-              </MacroMagnifierImage>
-            </div>
+    <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A30]/90 via-transparent to-transparent pointer-events-none" />
+
+    {/* Floating Stat Pill on Image */}
+    <div className="absolute top-5 right-5 bg-[#0E1A30]/80 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center pointer-events-none z-10">
+      <span className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#C6963F] block leading-none">
+        {currentMilestone.stat}
+      </span>
+      <span className="font-mono text-[9px] uppercase tracking-wider text-white/70 block mt-1">
+        {currentMilestone.statLabel}
+      </span>
+    </div>
+
+    {/* Year Stamp */}
+    <div className="absolute bottom-5 left-5 pointer-events-none z-10">
+      <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#C6963F] block">
+        MILESTONE ARCHIVE
+      </span>
+      <span className="font-serif-luxury text-3xl sm:text-4xl font-normal text-white">
+        {currentMilestone.year}
+      </span>
+    </div>
+
+  </div>
+</div>
 
             {/* Right: Narrative Story & Craft Details */}
             <div className="lg:col-span-6 flex flex-col justify-center space-y-6">
@@ -575,29 +582,32 @@ const About = () => {
 
         {/* Dynamic Mosaic Grid with GSAP Zoom Scrub */}
         <div className="grid grid-cols-12 gap-6">
-          {galleryImages.map((imgItem, idx) => (
-            <MacroMagnifierImage
-              key={idx}
-              src={imgItem.url}
-              alt={imgItem.title}
-              lensSize={170}
-              badgeText="1.5X LENS"
-              className={`gallery-zoom-item ${imgItem.aspect} rounded-3xl shadow-xl border border-[#0E1A30]/10`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A30]/90 via-[#0E1A30]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity pointer-events-none" />
+  {galleryImages.map((imgItem, idx) => (
+    <div
+      key={idx}
+      className={`gallery-zoom-item group relative ${imgItem.aspect} rounded-3xl shadow-xl border border-[#0E1A30]/10 overflow-hidden`}
+    >
+      <img
+        src={imgItem.url}
+        alt={imgItem.title}
+        className="w-full h-full object-cover"
+      />
 
-              {/* Bottom Caption */}
-              <div className="absolute bottom-6 left-6 right-6 text-white pointer-events-none z-10">
-                <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#C6963F] block mb-1">
-                  {imgItem.tag}
-                </span>
-                <h4 className="font-serif-luxury text-xl sm:text-2xl font-normal leading-snug">
-                  {imgItem.title}
-                </h4>
-              </div>
-            </MacroMagnifierImage>
-          ))}
-        </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A30]/90 via-[#0E1A30]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity pointer-events-none" />
+
+      {/* Bottom Caption */}
+      <div className="absolute bottom-6 left-6 right-6 text-white pointer-events-none z-10">
+        <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#C6963F] block mb-1">
+          {imgItem.tag}
+        </span>
+
+        <h4 className="font-serif-luxury text-xl sm:text-2xl font-normal leading-snug">
+          {imgItem.title}
+        </h4>
+      </div>
+    </div>
+  ))}
+</div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════

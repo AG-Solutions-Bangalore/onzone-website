@@ -1,8 +1,6 @@
 import React from "react";
 import { img } from "../lib/utils.js";
 
-import MacroMagnifierImage from "./MacroMagnifierImage";
-
 const Lookbook = () => {
   const cards = [
     {
@@ -84,12 +82,10 @@ const Lookbook = () => {
         {/* Masonry grid — 1 col mobile, 2 col sm, 4 col desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[220px] gap-2">
           {cards.map((card, i) => (
-            <MacroMagnifierImage
+            <img
               key={i}
               src={card.img}
               alt={card.cap}
-              lensSize={150}
-              badgeText="1.5X LENS"
               className={`rounded-xl shadow-md ${card.tall ? "row-span-2" : "row-span-1"}`}
             >
               {/* Gradient overlay — always visible at bottom */}
@@ -104,7 +100,7 @@ const Lookbook = () => {
                   {card.cap}
                 </div>
               </div>
-            </MacroMagnifierImage>
+            </img>
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import WhatsAppBroadcast from "./WhatsAppBroadcast";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -83,15 +84,17 @@ const Navbar = () => {
 
         {/* Right CTA & Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <Link
-            to="/contact"
-            className="hidden sm:inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs tracking-[0.08em] uppercase bg-[#0E1A30] text-[#FDFAF5] py-2 px-5 sm:px-6 rounded-full no-underline transition-all duration-200 hover:bg-[#C6963F] hover:text-[#0E1A30] shadow-sm hover:shadow group"
-          >
-            <span>Become a Partner</span>
-            <span className="text-[#C6963F] group-hover:text-[#0E1A30] transition-colors font-sans text-sm font-bold">
-              →
-            </span>
-          </Link>
+         <a
+  href="https://api.whatsapp.com/send/?phone=919916082518&text=Hello%20House%20of%20ONZONE%2C%20I%20would%20like%20to%20join%20your%20WhatsApp%20Broadcast%20for%20new%20catalogue%2C%20seasonal%20drops%2C%20and%20trade%20updates."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hidden sm:inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs tracking-[0.08em] uppercase bg-[#0E1A30] text-[#FDFAF5] py-2 px-5 sm:px-6 rounded-full no-underline transition-all duration-200 hover:bg-[#C6963F] hover:text-[#0E1A30] shadow-sm hover:shadow group"
+>
+  <span>Join VIP</span>
+  <span className="text-[#C6963F] group-hover:text-[#0E1A30] transition-colors font-sans text-sm font-bold">
+    →
+  </span>
+</a>
 
           {/* Mobile Menu Button */}
           <button
