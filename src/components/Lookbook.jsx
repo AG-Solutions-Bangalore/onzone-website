@@ -82,24 +82,25 @@ const Lookbook = () => {
         {/* Masonry grid — 1 col mobile, 2 col sm, 4 col desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[220px] gap-2">
           {cards.map((card, i) => (
-            <div
+            <img
               key={i}
-              className={`group relative overflow-hidden cursor-pointer bg-cover bg-center ${card.tall ? "row-span-2" : "row-span-1"}`}
-              style={{ backgroundImage: `url('${card.img}')` }}
+              src={card.img}
+              alt={card.cap}
+              className={`rounded-xl shadow-md ${card.tall ? "row-span-2" : "row-span-1"}`}
             >
               {/* Gradient overlay — always visible at bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(14,26,48,0.75)] via-[rgba(14,26,48,0.1)_50%] to-transparent transition-opacity duration-400 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(14,26,48,0.85)] via-[rgba(14,26,48,0.1)_50%] to-transparent pointer-events-none" />
 
               {/* Caption block pinned to bottom-left */}
-              <div className="absolute bottom-0 left-0 p-[14px_16px]">
-                <div className="font-mono text-[0.58rem] tracking-[0.14em] uppercase text-[#C6963F] mb-1">
+              <div className="absolute bottom-0 left-0 p-[14px_16px] pointer-events-none z-10">
+                <div className="font-mono text-[0.58rem] tracking-[0.14em] uppercase text-[#C6963F] mb-1 font-bold">
                   {card.tag}
                 </div>
                 <div className="font-serif-luxury text-[0.95rem] font-normal text-white leading-[1.2] normal-case not-italic">
                   {card.cap}
                 </div>
               </div>
-            </div>
+            </img>
           ))}
         </div>
       </div>

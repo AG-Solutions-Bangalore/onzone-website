@@ -7,7 +7,6 @@ export function cn(...inputs) {
 }
 
 
-const IMG_BASE = "https://houseofonzone.com/admin/public/assets/images/web_images/";
-
+const IMG_BASE = "/assets/";
 
 export const img = (name) => `${IMG_BASE}${name}`;

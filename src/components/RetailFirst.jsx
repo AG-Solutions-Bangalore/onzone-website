@@ -7,7 +7,8 @@ const RetailFirst = () => {
   useEffect(() => {
     AOS.init({
       duration: 800,
-      once: true,
+      once: false,
+      mirror: true,
       offset: 50,
     });
   }, []);
